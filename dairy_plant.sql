@@ -130,6 +130,15 @@ REFERENCES Material_Type(Material_Type_ID)
 ;
 
 ----------------------------------------
+--- Создание индексов
+----------------------------------------
+
+CREATE INDEX Supplier_Index ON Supplier(Material_Type_ID, Price, Next_Supply);
+CREATE INDEX Product_Order_Index ON Product_Order(Product_Type_ID, Quantity);
+CREATE INDEX Material_Order_Index ON Material_Order(Supplier_ID, Volume, Deadline);
+CREATE INDEX Product_Type_Index ON Product_Type(Package_Type_ID);
+
+----------------------------------------
 --- Заполнение данными
 ----------------------------------------
 
