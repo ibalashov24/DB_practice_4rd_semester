@@ -31,6 +31,7 @@ CREATE TABLE Product_Type(
 	Product_Type_ID		INTEGER		NOT NULL,
 	Name 			VARCHAR(30)	NOT NULL,
 	Package_Type_ID		INTEGER		NOT NULL,
+	Is_Available		INTEGER		DEFAULT 1 CHECK(Is_Available in (0, 1)),
 
 	CONSTRAINT Product_Type_PK PRIMARY KEY(Product_Type_ID)
 )
@@ -89,6 +90,7 @@ CREATE TABLE Package_Type(
 	Package_Type_ID		INTEGER		NOT NULL,
 	Name			VARCHAR(30),
 	Volume			DECIMAL		NOT NULL,
+	Is_Available		INTEGER		DEFAULT 1 CHECK(Is_Available in (0, 1)),
 
 	CONSTRAINT Package_Type_PK PRIMARY KEY(Package_Type_ID)
 )
@@ -162,7 +164,7 @@ INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (1, 'Тетра �
 INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (2, 'Пюр пак', 0.97);
 INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (3, 'Фольга оберточная', 0.180);
 INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (4, 'Полиэтиленовая пленка', 0.25);
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (5, 'Стаканчик пластиковый', 0.2);
+INSERT INTO Package_Type(Package_Type_ID, Name, Volume, Is_Available) VALUES (5, 'Стаканчик пластиковый', 0.2, 0);
 
 INSERT INTO Product_Type(Product_Type_ID, Name, Package_Type_ID) VALUES (0, 'Молоко 1.5%', 1);
 INSERT INTO Product_Type(Product_Type_ID, Name, Package_Type_ID) VALUES (1, 'Молоко 1.5%', 2);
