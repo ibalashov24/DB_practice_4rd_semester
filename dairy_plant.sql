@@ -37,7 +37,7 @@ CREATE TABLE Product_Type(
 )
 ;
 CREATE TABLE Client(
-	Client_ID		INTEGER	 	NOT NULL,
+	Client_ID		SERIAL,
 	Name			VARCHAR(30)	NOT NULL,
 	Address			VARCHAR(50)	NOT NULL,
 	Is_Regular		INTEGER		DEFAULT 0 CHECK(Is_Regular in (0, 1)),
@@ -52,13 +52,13 @@ CREATE TABLE Supplier(
 	Material_Type_ID	INTEGER		NOT NULL,
 	Maximal_Volume		DECIMAL 	NOT NULL,
 	Price			DECIMAL 	NOT NULL,
-	Next_Supply		DATE		DEFAULT CURRENT_DATE  NOT NULL,
+	Next_Supply		DATE		DEFAULT CURRENT_DATE NOT NULL,
 
 	CONSTRAINT Supplier_PK PRIMARY KEY(Supplier_ID)
 )
 ;
 CREATE TABLE Material_Order(
-	Material_Order_ID	INTEGER		NOT NULL,
+	Material_Order_ID	SERIAL,
 	Supplier_ID		INTEGER 	NOT NULL,
 	Volume			DECIMAL		NOT NULL,
 	Is_Done			INTEGER		CHECK(Is_Done in (0, 1)),
@@ -68,7 +68,7 @@ CREATE TABLE Material_Order(
 )
 ;
 CREATE TABLE Product_Order(
-	Product_Order_ID	INTEGER		NOT NULL,
+	Product_Order_ID	SERIAL,
 	Product_Type_ID		INTEGER		NOT NULL,
 	Client_ID		INTEGER		NOT NULL,
 	Quantity		DECIMAL		NOT NULL,
@@ -193,27 +193,31 @@ INSERT INTO Client(Client_ID, Name, Address) VALUES (3, 'Перекрёсток'
 INSERT INTO Client(Client_ID, Name, Address) VALUES (4, 'Перекрёсток', 'Петергоф, Гостилицкая улица 2А');
 INSERT INTO Client(Client_ID, Name, Address) VALUES (5, 'Пятерочка', 'Петергоф, Чичеринская улица 2');
 
-INSERT INTO Product_Order(Product_Order_ID, Product_Type_ID, Client_ID, Quantity, Is_Done)
-	VALUES (1, 3, 3, 50, 0);
-INSERT INTO Product_Order(Product_Order_ID, Product_Type_ID, Client_ID, Quantity, Is_Done)
-	VALUES (2, 6, 5, 100, 1);
-INSERT INTO Product_Order(Product_Order_ID, Product_Type_ID, Client_ID, Quantity, Is_Done)
-	VALUES (3, 4, 3, 75, 0);
-INSERT INTO Product_Order(Product_Order_ID, Product_Type_ID, Client_ID, Quantity, Is_Done)
-	VALUES (4, 3, 2, 100, 0);
-INSERT INTO Product_Order(Product_Order_ID, Product_Type_ID, Client_ID, Quantity, Is_Done)
-	VALUES (5, 2, 1, 42, 1);
+INSERT INTO Product_Order(Product_Type_ID, Client_ID, Quantity, Is_Done)
+	VALUES (3, 3, 50, 0);
+INSERT INTO Product_Order(Product_Type_ID, Client_ID, Quantity, Is_Done)
+	VALUES (6, 5, 100, 1);
+INSERT INTO Product_Order(Product_Type_ID, Client_ID, Quantity, Is_Done)
+	VALUES (4, 3, 75, 0);
+INSERT INTO Product_Order(Product_Type_ID, Client_ID, Quantity, Is_Done)
+	VALUES (3, 2, 100, 0);
+INSERT INTO Product_Order(Product_Type_ID, Client_ID, Quantity, Is_Done)
+	VALUES (2, 1, 42, 1);
 
-INSERT INTO Material_Order(Material_Order_ID, Supplier_ID, Volume, Is_Done, Deadline)
-	VALUES (1, 4, 100, 0, '2019-04-15');
-INSERT INTO Material_Order(Material_Order_ID, Supplier_ID, Volume, Is_Done, Deadline)
-	VALUES (2, 1, 1000, 1, '2019-05-21');
-INSERT INTO Material_Order(Material_Order_ID, Supplier_ID, Volume, Is_Done, Deadline)
-	VALUES (3, 1, 100, 0, '2019-06-01');
-INSERT INTO Material_Order(Material_Order_ID, Supplier_ID, Volume, Is_Done, Deadline)
-	VALUES (4, 3, 100, 0, '2019-04-20');
-INSERT INTO Material_Order(Material_Order_ID, Supplier_ID, Volume, Is_Done, Deadline)
-	VALUES (5, 2, 230, 1, '2018-10-10');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 1
+	VALUES (4, 100, 0, '2019-04-15');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 2
+	VALUES (1, 1000, 1, '2019-05-21');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 3
+	VALUES (1, 100, 0, '2019-06-01');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 4
+	VALUES (3, 100, 0, '2019-04-20');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 5
+	VALUES (2, 230, 1, '2018-10-10');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 6
+	VALUES (2, 130, 0, '2019-04-15');
+INSERT INTO Material_Order(Supplier_ID, Volume, Is_Done, Deadline) -- 7
+	VALUES (2, 130, 0, '2019-04-14');
 
 INSERT INTO Used_Material(Used_Material_ID, Product_Order_ID, Supplier_ID, Volume)
 	VALUES (1, 1, 1, 50);
