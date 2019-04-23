@@ -300,3 +300,15 @@ CREATE VIEW PartnerList AS
 --------- Пример вызова ---------
 
 SELECT * FROM PartnerList WHERE LEFT(Name, 1) = 'П';
+
+
+-----------------------------------------
+--- Удаление представлений
+-----------------------------------------
+
+/*
+DROP VIEW PartnerList;
+DROP VIEW AvailablePackageOptions;
+DROP VIEW UnfulfilledMaterialOrders;
+DROP VIEW UnfulfilledProductOrders;
+*/

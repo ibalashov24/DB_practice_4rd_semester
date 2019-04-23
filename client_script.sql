@@ -14,7 +14,7 @@ AND Orders.Client_ID = Client_Data.Client_ID;
 INSERT INTO Product_Order(product_type_id, client_id, quantity, is_done)
 	VALUES(2, 3, 240, 0);
 
---- (3) Среднее число упаковок в заказе (в целом) !!!!!!
+--- (3) Среднее число упаковок в заказе (в целом)
 
 SELECT AVG(Avg_Volume) FROM GetAvgOrderNumber();
 

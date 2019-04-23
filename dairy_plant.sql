@@ -106,27 +106,27 @@ REFERENCES Product_Type(Product_Type_ID)
 ;
 ALTER TABLE Product_Order ADD CONSTRAINT FK_Product_Order_Client
 FOREIGN KEY (Client_ID)
-REFERENCES Client(Client_ID)
+REFERENCES Client(Client_ID) ON DELETE CASCADE
 ;
 ALTER TABLE Material_Order ADD CONSTRAINT FK_Material_Order_Supplier
 FOREIGN KEY (Supplier_ID)
-REFERENCES Supplier(Supplier_ID)
+REFERENCES Supplier(Supplier_ID) ON DELETE CASCADE
 ;
 ALTER TABLE Used_Material ADD CONSTRAINT FK_Used_Material_Product_Order
 FOREIGN KEY (Product_Order_ID)
-REFERENCES Product_Order(Product_Order_ID)
+REFERENCES Product_Order(Product_Order_ID) ON DELETE CASCADE
 ;
 ALTER TABLE Used_Material ADD CONSTRAINT FK_Used_Material_Supplier
 FOREIGN KEY (Supplier_ID)
-REFERENCES Supplier(Supplier_ID)
+REFERENCES Supplier(Supplier_ID) ON DELETE CASCADE
 ;
 ALTER TABLE Product_Type ADD CONSTRAINT FK_Product_Type_Package_Type
 FOREIGN KEY (Package_Type_ID)
-REFERENCES Package_Type(Package_Type_ID)
+REFERENCES Package_Type(Package_Type_ID) ON DELETE CASCADE
 ;
 ALTER TABLE Supplier ADD CONSTRAINT FK_Supplier_Material_Type
 FOREIGN KEY (Material_Type_ID)
-REFERENCES Material_Type(Material_Type_ID)
+REFERENCES Material_Type(Material_Type_ID) ON DELETE CASCADE
 ;
 
 ----------------------------------------
