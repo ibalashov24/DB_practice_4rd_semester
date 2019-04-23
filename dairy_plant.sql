@@ -176,6 +176,7 @@ INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (2, 'Пюр па�
 INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (3, 'Фольга оберточная', 0.180);
 INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (4, 'Полиэтиленовая пленка', 0.25);
 INSERT INTO Package_Type(Package_Type_ID, Name, Volume, Is_Available) VALUES (5, 'Стаканчик пластиковый', 0.2, 0);
+INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (6, 'Стаканчик пластиковый', 0.5)
 
 INSERT INTO Product_Type(Product_Type_ID, Name, Package_Type_ID) VALUES (0, 'Молоко 1.5%', 1);
 INSERT INTO Product_Type(Product_Type_ID, Name, Package_Type_ID) VALUES (1, 'Молоко 1.5%', 2);

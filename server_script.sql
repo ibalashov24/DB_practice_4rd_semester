@@ -262,4 +262,41 @@ CREATE VIEW UnfulfilledMaterialOrders AS
 --------- Пример вызова ---------	
 
 SELECT MAX(volume) FROM UnfulfilledMaterialOrders;
-		
+
+
+------------------------------------------------
+--- Доступные виды тары и товары, которые можно в эту тару упаковать
+------------------------------------------------
+
+CREATE VIEW AvailablePackageOptions AS
+	SELECT
+		Package_Type.name AS Package,
+		Package_Type.Volume AS Volume,
+		Product_Type.name AS Product
+	FROM Package_Type LEFT JOIN Product_Type
+	ON Package_Type.Package_Type_ID = Product_Type.Package_Type_ID;
+
+--------- Пример вызова ---------
+
+SELECT * FROM AvailablePackageOptions;
+
+
+------------------------------------------------
+--- Список всех, с кем работает молокозавод
+------------------------------------------------
+
+CREATE VIEW PartnerList AS
+	SELECT 
+		Supplier.Name AS Name,
+		Supplier.Address AS Address
+	FROM Supplier JOIN Material_Order
+	ON Material_Order.Supplier_ID = Supplier.Supplier_ID
+	UNION	
+	SELECT 
+		Client.Name AS Name,
+		Client.Address AS Address 
+	FROM Client
+
+--------- Пример вызова ---------
+
+SELECT * FROM PartnerList WHERE LEFT(Name, 1) = 'П';
