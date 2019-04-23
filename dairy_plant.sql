@@ -87,7 +87,7 @@ CREATE TABLE Used_Material(
 )
 ;
 CREATE TABLE Package_Type(
-	Package_Type_ID		INTEGER		NOT NULL,
+	Package_Type_ID		SERIAL,
 	Name			VARCHAR(30),
 	Volume			DECIMAL		NOT NULL,
 	Is_Available		INTEGER		DEFAULT 1 CHECK(Is_Available in (0, 1)),
@@ -171,12 +171,12 @@ INSERT INTO Supplier(Supplier_ID, Name, Address, Material_Type_Id, Maximal_Volum
 INSERT INTO Supplier(Supplier_ID, Name, Address, Material_Type_Id, Maximal_Volume, Price, Next_Supply) 
 	VALUES (9, 'Ферма "Ласточка"', 'Волосовский район', 7, 23, 67, '2019-05-08');
 
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (1, 'Тетра пак', 1.0);
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (2, 'Пюр пак', 0.97);
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (3, 'Фольга оберточная', 0.180);
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (4, 'Полиэтиленовая пленка', 0.25);
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume, Is_Available) VALUES (5, 'Стаканчик пластиковый', 0.2, 0);
-INSERT INTO Package_Type(Package_Type_ID, Name, Volume) VALUES (6, 'Стаканчик пластиковый', 0.5)
+INSERT INTO Package_Type(Name, Volume) VALUES ('Тетра пак', 1.0);
+INSERT INTO Package_Type(Name, Volume) VALUES ('Пюр пак', 0.97);
+INSERT INTO Package_Type(Name, Volume) VALUES ('Фольга оберточная', 0.180);
+INSERT INTO Package_Type(Name, Volume) VALUES ('Полиэтиленовая пленка', 0.25);
+INSERT INTO Package_Type(Name, Volume, Is_Available) VALUES ('Стаканчик пластиковый', 0.2, 0);
+INSERT INTO Package_Type(Name, Volume) VALUES ('Стаканчик пластиковый', 0.5);
 
 INSERT INTO Product_Type(Product_Type_ID, Name, Package_Type_ID) VALUES (0, 'Молоко 1.5%', 1);
 INSERT INTO Product_Type(Product_Type_ID, Name, Package_Type_ID) VALUES (1, 'Молоко 1.5%', 2);
@@ -193,6 +193,7 @@ INSERT INTO Client(Client_ID, Name, Address) VALUES (2, 'Лента', 'Пете�
 INSERT INTO Client(Client_ID, Name, Address) VALUES (3, 'Перекрёсток', 'СПб, Лиговский проспект 30А');
 INSERT INTO Client(Client_ID, Name, Address) VALUES (4, 'Перекрёсток', 'Петергоф, Гостилицкая улица 2А');
 INSERT INTO Client(Client_ID, Name, Address) VALUES (5, 'Пятерочка', 'Петергоф, Чичеринская улица 2');
+INSERT INTO Client(Client_ID, Name, Address, Is_Regular) VALUES (6, 'Кафе "Яма"', 'Петергоф, Ульяновская улица 28', 1);
 
 INSERT INTO Product_Order(Product_Type_ID, Client_ID, Quantity, Is_Done)
 	VALUES (3, 3, 50, 0);
