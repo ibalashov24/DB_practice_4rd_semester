@@ -40,7 +40,7 @@ CREATE OR REPLACE FUNCTION GetCheapestOffers(material_ids INT[])
 RETURNS TABLE (
 	Offer_ID	INT,
 	Offer_Supplier	CHARACTER VARYING,
-	Offer_Name	CHARACTER VARYING,
+	Material_Name	CHARACTER VARYING,
 	Offer_Price	NUMERIC
 )
 AS $$
@@ -48,7 +48,7 @@ DECLARE
 	element	INT;
 BEGIN
 FOREACH element IN ARRAY material_ids LOOP
-	RETURN QUERY SELECT Supplier_ID, Supplier_Name, Material, Price
+	RETURN QUERY SELECT Supplier_ID, Supplier_Name, Offer_Name, Price
 		FROM GetCheapestSupplier((SELECT Name FROM Material_Type WHERE Material_Type_ID = element)) LIMIT 1;
 END LOOP;
 END;

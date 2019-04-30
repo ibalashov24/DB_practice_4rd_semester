@@ -76,11 +76,12 @@ CREATE OR REPLACE FUNCTION GetCheapestSupplier(material_name CHARACTER VARYING)
 RETURNS TABLE (
 	Supplier_ID 	INT,
 	Supplier_Name 	CHARACTER VARYING,
+	Offer_Name 	CHARACTER VARYING,
 	Price		NUMERIC
 ) AS $$
 BEGIN
 RETURN QUERY
-	SELECT Supplier.Supplier_ID, Supplier.Name, Supplier.Price FROM Supplier, Material_Type
+	SELECT Supplier.Supplier_ID, Supplier.Name, Material_Type.Name, Supplier.Price FROM Supplier, Material_Type
 	WHERE Material_Type.Material_Type_ID = Supplier.Material_Type_ID 
 	AND Material_Type.Name = material_name
 	ORDER BY Supplier.Price LIMIT 1;
@@ -233,6 +234,7 @@ CREATE VIEW UnfulfilledProductOrders AS
 	SELECT
 		Product_Order.Product_Order_Id, 
 		Product_Type.Name AS Product_Name, 
+		Client.Client_ID AS Client_ID,
 		Client.Name AS Client_Name, 
 		Product_Order.quantity 
 	FROM Product_Order, Client, Product_Type
