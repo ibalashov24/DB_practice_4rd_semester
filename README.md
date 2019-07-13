@@ -1,1 +1,1 @@
-# DB_practice_4rd_semester
+# Semester project for the SPbU Database course (lecturer: Pomytkina T.)
